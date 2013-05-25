@@ -17,3 +17,5 @@ Convert timestamps to timegroups and vice-versa
 - m60 - Jan 1, 1970 @ 00:01:00
 - h8 - Jan 1, 1970 @ 00:08:00
 - y5 - Jan 1, 1974 @ 00:00:00
+
+## binary storage

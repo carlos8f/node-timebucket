@@ -1,9 +1,16 @@
 node-timegroup
 ==============
 
-Convert timestamps into time-group IDs
+Convert timestamps to timegroups and vice-versa
 
-## Examples of time-group IDs:
+**Timegroups** are an alternative to traditional timestamps which consist of:
+
+1. (optional) an unsigned granularity multiplier (default: `1`)
+2. a granularity identifier, i.e. `s` for seconds
+3. a signed multiplier, i.e. number of seconds after or before epoch year
+4. (optional) an adjustment to the 1970 epoch year (default: `+0`)
+
+## Examples of timegroups:
 
 - w52 - Jan 1, 1971
 - s50 - Jan 1, 1970 @ 00:00:50

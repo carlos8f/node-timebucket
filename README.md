@@ -8,7 +8,7 @@ Convert timestamps to timegroups and vice-versa
 1. (optional) an unsigned granularity multiplier (default: `1`)
 2. a granularity identifier, i.e. `s` for seconds
 3. a signed multiplier, i.e. number of seconds after or before epoch year
-4. (optional) an adjustment to the 1970 epoch year (default: `+0`)
+4. (optional) a signed adjustment to the 1970 epoch year (default: `+0`)
 
 ## Examples of timegroups:
 

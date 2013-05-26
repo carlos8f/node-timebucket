@@ -34,13 +34,17 @@ var timegroup = require('timegroup');
 console.log(timegroup());
 // 'ms1369601120380'
 
-// create a timegroup from granularity (seconds) and value
+// create a timegroup from implied granularity (milliseconds) and value
+console.log(timegroup(1369601120380));
+// 'ms1369601120380'
+
+// create a timegroup from specific granularity (seconds) and value
 console.log(timegroup('s', 1369601125));
 // 's1369601125'
 
 // convert to year granularity
-console.log(timegroup('s', 1369601125).y());
-// 'y2013'
+console.log(timegroup().convert('y'));
+// 'y43'
 
 // create timegroup from current seconds after unix epoch, and add 5
 console.log(timegroup('s').add(5));
@@ -51,13 +55,21 @@ console.log(timegroup(new Date()));
 // 'ms1369601120380'
 
 // create timegroup from string representation
-console.log(timegroup('y2013'));
-// 'y2013'
+console.log(timegroup('y43'));
+// 'y43'
 
 // access granularity and value as properties
 var t = timegroup();
 console.log(t.granularity, t.value);
 // 'ms' 1369601120380
+
+// create timegroup with granularity multiplier
+console.log(timegroup('30m'));
+// '30m760894'
+
+// convert with granularity multiplier
+console.log(timegroup('y').convert('30m'));
+// '30m753360'
 
 ```
 
@@ -71,16 +83,14 @@ console.log(t.granularity, t.value);
 
 ## Granularity identifiers
 
-- `ns` - nanoseconds
-- `mu` - microseconds
+- `µs` - microseconds
 - `ms` - milliseconds
 - `s` - seconds
 - `m` - minutes
 - `h` - hours
 - `d` - days
 - `w` - weeks
+- `mo` - months
 - `y` - years
-- `c` - centuries
-- `mm` - millenia
 
 ## binary storage

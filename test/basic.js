@@ -29,4 +29,9 @@ describe('basic test', function () {
   it('converts to json', function () {
     assert.equal(JSON.stringify(timebucket('y43')), '"y43"');
   });
+  it('converts to date', function () {
+    var ts = 1369601120380;
+    var d = timebucket(ts).toDate();
+    assert.equal(d.getTime(), ts);
+  });
 });

@@ -35,15 +35,35 @@ A **timebucket** consists of:
 
 ## API
 
+### Construction
+
 The `timebucket` module exports a single factory function. It supports the
 following argument combinations:
 
 - `timebucket()` - build timebucket with millisecond granularity applied to current date
-- `timebucket(granularity)` - build from specific granularity (string identifier, see list below) applied to current date
+- `timebucket(size)` - build from specific size (string identifier, see list below) applied to current date
 - `timebucket(milliseconds)` - build from milliseconds since 1970
-- `timebucket(granularity, value)` - build from specific granularity and value
+- `timebucket(size, value)` - build from specific size and value
 - `timebucket(date)` - build from date object with millisecond granularity
 - `timebucket(str)` - build from string representation
+
+### Resizing
+
+To resize a bucket, call `resize(newSize)`:
+
+```js
+console.log(timebucket('y').resize('30m') + '');
+// '30m753360'
+```
+
+### Conversion
+
+Conversion methods:
+
+- `toString()` - convert to string representation
+- `toJSON()` - same as `toString()`
+- `toMilliseconds()` - convert to millisecond UNIX time offset
+- `toDate()` - convert to Date object
 
 ### API examples
 
@@ -102,7 +122,7 @@ console.log(timebucket('µs1369657390541000').resize('y') + '');
 
 ```
 
-## size identifiers
+## Granularity identifiers
 
 - `µs` - microseconds
 - `ms` - milliseconds
@@ -114,7 +134,7 @@ console.log(timebucket('µs1369657390541000').resize('y') + '');
 - `M` - months
 - `y` - years
 
-## binary storage
+## Binary storage
 
 @todo
 

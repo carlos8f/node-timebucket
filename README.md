@@ -27,6 +27,11 @@ A **timegroup** consists of:
 2. a granularity identifier, i.e. `s` for seconds
 3. a signed value, i.e. number of seconds, after or before epoch year (1970)
 
+### Format examples
+
+- `8h-491` - time (within 8 hours) of first moonwalk (`1969-07-21 02:56`)
+- `y43` - the year 2013
+
 ## API
 
 The `timegroup` module exports a single factory function. It supports the
@@ -38,7 +43,7 @@ following argument combinations:
 - `timegroup(granularity, value)` - build from specific granularity and value
 - `timegroup(date)` - build from date object with millisecond granularity
 
-### Examples
+### API examples
 
 ```js
 var timegroup = require('timegroup');

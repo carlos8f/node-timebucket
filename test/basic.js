@@ -1,7 +1,4 @@
 describe('basic test', function () {
-  it('defaults to current milliseconds after unix epoch', function () {
-    assert.equal(timebucket(), 'ms' + Date.now());
-  });
   it('create a bucket with default size (milliseconds) and value', function () {
     var ts = 1369601120380;
     assert.equal(timebucket(ts), 'ms' + ts);

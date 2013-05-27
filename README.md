@@ -136,7 +136,23 @@ console.log(timebucket('µs1369657390541000').resize('y') + '');
 
 ## Binary storage
 
-@todo
+
+1. 3 bits: size granularity (0-7, microseconds not supported)
+2. 1 bit: whether or not size value follows
+3. predefined size bits per granularity:
+     - `ms` - 10 bits (max 1023)
+     - `s` - 6 bits (max 63)
+     - `m` - 6 bits (max 63)
+     - `h` - 5 bits (max 31)
+     - `d` - 9 bits (max 511)
+     - `w` - 6 bits (max 63)
+     - `M` - 4 bits (max 15)
+     - `y` - 10 bits (max 1023)
+4. 1 bit: 1 for negative, 0 for positive
+
+### Example
+
+`30m`: `010 1 011111` (351)
 
 - - -
 

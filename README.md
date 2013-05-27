@@ -1,8 +1,10 @@
 ## timegroup
 
-Convert timestamps to timegroups and vice-versa
+[![build status](https://secure.travis-ci.org/carlos8f/node-timegroup.png)](http://travis-ci.org/carlos8f/node-timegroup)
 
-A **Timegroup** is a type of
+Group timestamps into timegroups, by applying a granularity to a discrete value
+
+A **timegroup** is a type of
 [time domain](http://www.cs.arizona.edu/~rts/pubs/LNCS1399p406.pdf)
 which combines a granularity identifier with a discrete value, and can
 be stored as a compact string.
@@ -17,15 +19,26 @@ and microsecond timestamps (such as those used in high-frequency trading
 applications) can be converted, and stored in a complete way (with granularity
 attached).
 
-## Format
+## Anatomy of a timegroup
 
-A timegroup consists of:
+A **timegroup** consists of:
 
 1. (optional) an unsigned granularity multiplier (default: `1`)
 2. a granularity identifier, i.e. `s` for seconds
 3. a signed value, i.e. number of seconds, after or before epoch year (1970)
 
 ## API
+
+The `timegroup` module exports a single factory function. It supports the
+following argument combinations:
+
+- `timegroup()` - build timegroup with millisecond granularity applied to current date
+- `timegroup(granularity)` - build from specific granularity (string identifier, see list below) applied to current date
+- `timegroup(milliseconds)` - build from milliseconds since 1970
+- `timegroup(granularity, value)` - build from specific granularity and value
+- `timegroup(date)` - build from date object with millisecond granularity
+
+### Examples
 
 ```js
 var timegroup = require('timegroup');
@@ -73,14 +86,6 @@ console.log(timegroup('y').convert('30m'));
 
 ```
 
-## Examples of timegroups string identifiers:
-
-- `w52` - Jan 1, 1971
-- `s50` - Jan 1, 1970 @ 00:00:50
-- `m60` - Jan 1, 1970 @ 00:01:00
-- `h8` - Jan 1, 1970 @ 00:08:00
-- `y5` - Jan 1, 1974 @ 00:00:00
-
 ## Granularity identifiers
 
 - `µs` - microseconds
@@ -94,3 +99,36 @@ console.log(timegroup('y').convert('30m'));
 - `y` - years
 
 ## binary storage
+
+@todo
+
+- - -
+
+### Developed by [Terra Eclipse](http://www.terraeclipse.com)
+Terra Eclipse, Inc. is a nationally recognized political technology and
+strategy firm located in Aptos, CA and Washington, D.C.
+
+- - -
+
+### License: MIT
+
+- Copyright (C) 2012 Carlos Rodriguez (http://s8f.org/)
+- Copyright (C) 2012 Terra Eclipse, Inc. (http://www.terraeclipse.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished
+to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

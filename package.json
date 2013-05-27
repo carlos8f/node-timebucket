@@ -1,0 +1,28 @@
+{
+  "name": "timegroup",
+  "version": "0.0.0",
+  "description": "group timestamps into timegroups, by applying a granularity to a discrete value",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/carlos8f/node-timegroup.git"
+  },
+  "homepage": "https://github.com/carlos8f/node-timegroup",
+  "keywords": [
+    "time",
+    "granularity",
+    "computation",
+    "series",
+    "domain",
+    "stamp"
+  ],
+  "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
+  "license": "MIT"
+}

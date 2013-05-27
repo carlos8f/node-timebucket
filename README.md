@@ -91,6 +91,15 @@ console.log(t.size.value, t.size.granularity, t.value);
 console.log(timebucket('y').resize('30m') + '');
 // '30m753360'
 
+// from current microseconds (smallest supported bucket size)
+console.log(timebucket('µs') + '');
+// 'µs1369659466378060'
+
+// resize from microseconds
+console.log(timebucket('µs1369657390541000').resize('y') + '');
+// 'y43'
+
+
 ```
 
 ## size identifiers

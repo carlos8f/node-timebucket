@@ -29,7 +29,7 @@ A **timegroup** consists of:
 
 ### Format examples
 
-- `8h-491` - time (within 8 hours) of first moonwalk (`1969-07-21 02:56`)
+- `8h-491` - time (within 8 hours) of first moonwalk (`1969-07-21 02:56` UTC)
 - `y43` - the year 2013
 
 ## API

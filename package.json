@@ -1,9 +1,11 @@
 {
-  "name": "timegroup",
+  "name": "timebucket",
   "version": "0.0.0",
-  "description": "group timestamps into timegroups, by applying a granularity to a discrete value",
+  "description": "group timestamps into \"buckets\" by applying a granularity to a discrete value",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "~2.0.0"
+  },
   "devDependencies": {
     "mocha": "*"
   },
@@ -12,16 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/carlos8f/node-timegroup.git"
+    "url": "git://github.com/carlos8f/node-timebucket.git"
   },
-  "homepage": "https://github.com/carlos8f/node-timegroup",
+  "homepage": "https://github.com/carlos8f/node-timebucket",
   "keywords": [
     "time",
     "granularity",
     "computation",
     "series",
     "domain",
-    "stamp"
+    "stamp",
+    "group"
   ],
   "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
   "license": "MIT"

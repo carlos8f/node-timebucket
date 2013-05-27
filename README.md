@@ -1,30 +1,31 @@
-## timegroup
+## timebucket
 
-[![build status](https://secure.travis-ci.org/carlos8f/node-timegroup.png)](http://travis-ci.org/carlos8f/node-timegroup)
+[![build status](https://secure.travis-ci.org/carlos8f/node-timebucket.png)](http://travis-ci.org/carlos8f/node-timebucket)
 
-Group timestamps into timegroups, by applying a granularity to a discrete value
+Group timestamps into "buckets" by applying a granularity to a discrete value
 
-A **timegroup** is a type of
+A **timebucket** is a type of
 [time domain](http://www.cs.arizona.edu/~rts/pubs/LNCS1399p406.pdf)
-which combines a granularity identifier with a discrete value, and can
+which combines a size identifier (granularity) with a discrete value, and can
 be stored as a compact string.
 
-Timegroups are useful for grouping timestamps together using a particular
+Timebuckets are useful for grouping timestamps together using a particular
 granularity (such as groups of 30 minutes), as an aid for graphing or
 map/reduce-ing time-series data.
 
-Also, timegroups can serve as a neutral format between which UNIX timestamps
+Also, timebuckets can serve as a neutral format between which UNIX timestamps
 (seconds before or after 1970), millisecond timestamps (as used in JavaScript),
 and microsecond timestamps (such as those used in high-frequency trading
 applications) can be converted, and stored in a complete way (with granularity
 attached).
 
-## Anatomy of a timegroup
+## Anatomy of a timebucket
 
-A **timegroup** consists of:
+A **timebucket** consists of:
 
-1. (optional) an unsigned granularity multiplier (default: `1`)
-2. a granularity identifier, i.e. `s` for seconds
+1. a size spec (string) which consists of:
+  1. (optional) an unsigned multiplier (default: `1`)
+  2. a granularity identifier, i.e. `s` for seconds
 3. a signed value, i.e. number of seconds, after or before epoch year (1970)
 
 ### Format examples
@@ -34,64 +35,65 @@ A **timegroup** consists of:
 
 ## API
 
-The `timegroup` module exports a single factory function. It supports the
+The `timebucket` module exports a single factory function. It supports the
 following argument combinations:
 
-- `timegroup()` - build timegroup with millisecond granularity applied to current date
-- `timegroup(granularity)` - build from specific granularity (string identifier, see list below) applied to current date
-- `timegroup(milliseconds)` - build from milliseconds since 1970
-- `timegroup(granularity, value)` - build from specific granularity and value
-- `timegroup(date)` - build from date object with millisecond granularity
+- `timebucket()` - build timebucket with millisecond granularity applied to current date
+- `timebucket(granularity)` - build from specific granularity (string identifier, see list below) applied to current date
+- `timebucket(milliseconds)` - build from milliseconds since 1970
+- `timebucket(granularity, value)` - build from specific granularity and value
+- `timebucket(date)` - build from date object with millisecond granularity
+- `timebucket(str)` - build from string representation
 
 ### API examples
 
 ```js
-var timegroup = require('timegroup');
+var timebucket = require('timebucket');
 
 // defaults to current milliseconds after unix epoch
-console.log(timegroup());
+console.log(timebucket() + '');
+// 'ms1369656669680'
+
+// default size (milliseconds) and value
+console.log(timebucket(1369601120380) + '');
 // 'ms1369601120380'
 
-// create a timegroup from implied granularity (milliseconds) and value
-console.log(timegroup(1369601120380));
-// 'ms1369601120380'
-
-// create a timegroup from specific granularity (seconds) and value
-console.log(timegroup('s', 1369601125));
+// specific size (seconds) and value
+console.log(timebucket('s', 1369601125) + '');
 // 's1369601125'
 
-// convert to year granularity
-console.log(timegroup().convert('y'));
+// resize to year
+console.log(timebucket().resize('y') + '');
 // 'y43'
 
-// create timegroup from current seconds after unix epoch, and add 5
-console.log(timegroup('s').add(5));
-// 's1369601125'
+// use current time, specific size
+console.log(timebucket('30m') + '');
+// '30m760920'
 
-// create timegroup from date object
-console.log(timegroup(new Date()));
-// 'ms1369601120380'
+// create timebucket from current seconds after unix epoch, and add 5
+console.log(timebucket('s').add(5) + '');
+// 's1369656674'
 
-// create timegroup from string representation
-console.log(timegroup('y43'));
+// from date object
+console.log(timebucket(new Date()) + '');
+// 'ms1369656669686'
+
+// from string representation
+console.log(timebucket('y43') + '');
 // 'y43'
 
 // access granularity and value as properties
-var t = timegroup();
-console.log(t.granularity, t.value);
-// 'ms' 1369601120380
+var t = timebucket();
+console.log(t.size.value, t.size.granularity, t.value);
+// 1 'ms' 1369656669686
 
-// create timegroup with granularity multiplier
-console.log(timegroup('30m'));
-// '30m760894'
-
-// convert with granularity multiplier
-console.log(timegroup('y').convert('30m'));
+// resize
+console.log(timebucket('y').resize('30m') + '');
 // '30m753360'
 
 ```
 
-## Granularity identifiers
+## size identifiers
 
 - `µs` - microseconds
 - `ms` - milliseconds
@@ -100,7 +102,7 @@ console.log(timegroup('y').convert('30m'));
 - `h` - hours
 - `d` - days
 - `w` - weeks
-- `mo` - months
+- `M` - months
 - `y` - years
 
 ## binary storage

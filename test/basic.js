@@ -6,6 +6,9 @@ describe('basic test', function () {
   it('create a bucket with a specific size', function () {
     assert.equal(timebucket('s', 1369601125), 's1369601125');
   });
+  it('create a bucket with a string value argument', function () {
+    assert.equal(timebucket('s', '1369601125'), 's1369601125');
+  });
   it('resize to year granularity', function () {
     assert.equal(timebucket(1369601120380).resize('y').toString(), 'y43');
   });

@@ -15,6 +15,9 @@ module.exports = function timebucket () {
       else if (arg.match(BucketSize.regex)) {
         size = arg;
       }
+      else if (!Number.isNaN(Number(arg))) {
+        value = Number(arg);
+      }
     }
     else if (typeof arg === 'number') {
       value = arg;

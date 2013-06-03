@@ -37,4 +37,10 @@ describe('basic test', function () {
     var d = timebucket(ts).toDate();
     assert.equal(d.getTime(), ts);
   });
+  it('represent moonwalk date', function () {
+    var ts = timebucket('8h-491').toMilliseconds();
+    assert.equal(ts, -14140800000);
+    var t = timebucket('ms', ts).resize('8h');
+    assert.equal(t.toString(), '8h-491');
+  });
 });

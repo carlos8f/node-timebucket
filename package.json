@@ -5,8 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "moment": "~2.0.0",
-    "microtime": "~0.3.3",
-    "int-packer": "~0.2.0"
+    "microtime": "~0.3.3"
   },
   "devDependencies": {
     "mocha": "*"

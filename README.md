@@ -37,7 +37,7 @@ A **timebucket** consists of:
 
 ### Construction
 
-The `timebucket` module exports a single factory function. It supports the
+The `timebucket` module exports a factory function. It supports the
 following argument combinations:
 
 - `timebucket()` - build timebucket with millisecond granularity applied to current date
@@ -134,9 +134,22 @@ console.log(timebucket('µs1369657390541000').resize('y') + '');
 - `M` - months
 - `y` - years
 
-## Binary storage
+## Integer storage
 
-@todo
+Timebuckets also have a 64-bit integer representation which contains granularity
+metadata, while maintaining sortability with buckets of the same granularity.
+
+```js
+var timebucket = require('timebucket');
+var num = timebucket('8h-491').toNumber();
+// toNumber() returns a 64-bit integer representation as a Number
+console.log(num);
+// -49133
+var bucket = timebucket.fromNumber(num);
+// fromNumber() takes the result of toNumber(), and returns a timebucket instance:
+console.log(bucket.toString());
+// 8h-491
+```
 
 - - -
 

@@ -40,6 +40,6 @@ module.exports = function timebucket () {
   return new Bucket(size, value);
 };
 
-module.exports.unpack = function (num) {
-  return Bucket.unpack(num);
+module.exports.fromNumber = function (num) {
+  return Bucket.fromNumber(num);
 };

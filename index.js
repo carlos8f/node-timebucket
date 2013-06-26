@@ -39,3 +39,7 @@ module.exports = function timebucket () {
   }
   return new Bucket(size, value);
 };
+
+module.exports.unpack = function (num) {
+  return Bucket.unpack(num);
+};

@@ -43,4 +43,9 @@ describe('basic test', function () {
     var t = timebucket('ms', ts).resize('8h');
     assert.equal(t.toString(), '8h-491');
   });
+  it('throws type error', function () {
+    assert.throws(function () {
+      timebucket('ms', {});
+    }, /argument 2 must be string, number, or date/);
+  });
 });

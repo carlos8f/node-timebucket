@@ -3,11 +3,13 @@ var Bucket = require('./lib/bucket')
   , microtime = require('microtime')
 
 module.exports = function timebucket () {
-  var args = [].slice.call(arguments);
-  var size = 'ms';
-  var value;
-  var bucketStr;
-  args.forEach(function (arg) {
+  var args = [].slice.call(arguments)
+    , size = 'ms'
+    , value
+    , bucketStr
+    , date = false
+
+  args.forEach(function (arg, idx) {
     if (typeof arg === 'string') {
       if (arg.match(Bucket.regex)) {
         bucketStr = arg;
@@ -30,8 +32,15 @@ module.exports = function timebucket () {
     }
     else if (arg instanceof Date) {
       value = arg.getTime();
+      date = true;
+    }
+    else {
+      throw new TypeError('argument ' + (idx + 1) + ' must be string, number, or date');
     }
   });
+  if (date) {
+    return new Bucket('ms', value).resize(size);
+  }
   if (bucketStr) return Bucket.fromString(bucketStr);
   if (typeof value === 'undefined') {
     if (size === 'µs') return new Bucket('µs', microtime.now());

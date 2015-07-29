@@ -1,7 +1,7 @@
 describe('number', function () {
   it('packs and unpacks', function () {
     var num = timebucket('5y').toNumber();
-    assert.equal(num, 827);
+    assert.equal(num, 927);
     assert.equal(timebucket.fromNumber(num).toString(), timebucket('5y').toString());
     num = timebucket(1372268623916).toNumber();
     assert.equal(num, 137226862391600);

@@ -4,11 +4,11 @@
   "description": "group timestamps into \"buckets\" by applying a granularity to a discrete value",
   "main": "index.js",
   "dependencies": {
-    "moment": "~2.0.0",
-    "microtime": "~2.0.0"
+    "moment": "^2.13.0",
+    "microtime": "2.1.1"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "^2.4.5"
   },
   "scripts": {
     "test": "make test"

@@ -1,6 +1,6 @@
 {
   "name": "timebucket",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "group timestamps into \"buckets\" by applying a granularity to a discrete value",
   "main": "index.js",
   "dependencies": {

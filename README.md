@@ -1,7 +1,5 @@
 ## timebucket
 
-[![build status](https://secure.travis-ci.org/carlos8f/node-timebucket.png)](http://travis-ci.org/carlos8f/node-timebucket)
-
 Group timestamps into "buckets" by applying a granularity to a discrete value
 
 A **timebucket** is a type of
@@ -14,9 +12,7 @@ granularity (such as groups of 30 minutes), as an aid for graphing or
 map/reduce-ing time-series data.
 
 Also, timebuckets can serve as a neutral format between which UNIX timestamps
-(seconds before or after 1970), millisecond timestamps (as used in JavaScript),
-and microsecond timestamps (such as those used in high-frequency trading
-applications) can be converted, and stored in a complete way (with granularity
+(seconds before or after 1970) and millisecond timestamps (as used in JavaScript) can be converted, and stored in a complete way (with granularity
 attached).
 
 ## Anatomy of a timebucket
@@ -111,20 +107,10 @@ console.log(t.size.value, t.size.granularity, t.value);
 console.log(timebucket('y').resize('30m') + '');
 // '30m753360'
 
-// from current microseconds (smallest supported bucket size)
-console.log(timebucket('µs') + '');
-// 'µs1369659466378060'
-
-// resize from microseconds
-console.log(timebucket('µs1369657390541000').resize('y') + '');
-// 'y43'
-
-
 ```
 
 ## Granularity identifiers
 
-- `µs` - microseconds
 - `ms` - milliseconds
 - `s` - seconds
 - `m` - minutes

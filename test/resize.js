@@ -7,13 +7,6 @@ describe('resize', function () {
     var ts = 1369601120380;
     assert.equal(timebucket(ts).resize('y').resize('30m').toString(), '30m753360');
   });
-  it('resize to microseconds', function () {
-    var ts = 1369601120380;
-    assert.equal(timebucket(ts).resize('µs').toString(), 'µs1369601120380000');
-  });
-  it('resize from microseconds', function () {
-    assert.equal(timebucket('µs1369601120380000').resize('y').toString(), 'y43');
-  });
   it.skip('more resize tests', function () {
   it('resize to months', function () {
 

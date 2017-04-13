@@ -1,6 +1,5 @@
 var Bucket = require('./lib/bucket')
   , BucketSize = require('./lib/bucket-size')
-  , microtime = require('microtime')
 
 module.exports = function timebucket () {
   var args = [].slice.call(arguments)
@@ -43,7 +42,6 @@ module.exports = function timebucket () {
   }
   if (bucketStr) return Bucket.fromString(bucketStr);
   if (typeof value === 'undefined') {
-    if (size === 'µs') return new Bucket('µs', microtime.now());
     return new Bucket('ms', (new Date()).getTime()).resize(size);
   }
   return new Bucket(size, value);
